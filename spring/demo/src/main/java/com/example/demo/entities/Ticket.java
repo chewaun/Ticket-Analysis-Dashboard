@@ -1,15 +1,21 @@
 package com.example.demo.entities;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+// @JsonIdentityInfo(
+//     generator = ObjectIdGenerators.PropertyGenerator.class,
+//     property = "id"
+// )
 
 /**
  * Ticket
@@ -39,12 +45,12 @@ public class Ticket {
 
     @Column(name="remark")
     private String remark;
-    
-    @ManyToOne
-    @JoinColumn(name="resolution_category_id")
-    public Set<ResolutionCategory> resolutionCategory; // use singular here
-    
 
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="resolution_category_id")
+    public ResolutionCategory resolutionCategoryId; // use singular here
+    
     public Long getId() {
         return this.id;
     }
@@ -101,12 +107,13 @@ public class Ticket {
         this.remark = remark;
     }
 
-    public Set<ResolutionCategory> getResolutionCategory() {
-        return this.resolutionCategory;
+    public ResolutionCategory getResolutionCategoryId() {
+        return this.resolutionCategoryId;
     }
 
-    public void setResolutionCategory(Set<ResolutionCategory> resolutionCategory) {
-        this.resolutionCategory = resolutionCategory;
+    public void setResolutionCategoryId(ResolutionCategory resolutionCategoryId) {
+        this.resolutionCategoryId = resolutionCategoryId;
     }
+
 
 }

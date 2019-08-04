@@ -1,16 +1,21 @@
 package com.example.demo.entities;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+// @JsonIdentityInfo(
+//     generator = ObjectIdGenerators.PropertyGenerator.class,
+//     property = "id"
+// )
 
 /**
  * ResolutionCategory
@@ -27,10 +32,10 @@ public class ResolutionCategory {
     private String name;
 
     // One resolution category can be used by many incidents
-    @OneToMany
-    @JoinColumn(name="resolution_category_id")
-    public Set<Ticket> tickets;
-    
+    @JsonManagedReference
+    @OneToMany(mappedBy="resolutionCategoryId")
+    public List<Ticket> tickets;
+    //= new ArrayList<>()
     
     public Long getId() {
         return this.id;
@@ -48,13 +53,13 @@ public class ResolutionCategory {
         this.name = name;
     }
 
-
-    public Set<Ticket> getTickets() {
+    public List<Ticket> getTickets() {
         return this.tickets;
     }
 
-    public void setTickets(Set<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
+
     
 }

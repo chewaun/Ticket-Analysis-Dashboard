@@ -23,4 +23,14 @@ public class TicketController {
         return repository.findAll();
     }
 
+    @GetMapping(value="/tickets/updated")
+    public List<Ticket> getUpdatedTickets() {
+        return repository.findUpdatedTickets();
+    }
+
+    @GetMapping(value="/tickets/not-updated")
+    public List<Ticket> getTicketsNotUpdated() {
+        return repository.findTicketsNotUpdated();
+    }
+
 }
