@@ -26,5 +26,8 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     // with variables
     @Query("SELECT t FROM Ticket t WHERE t.remark = ''")
     List<Ticket> findTicketsNotUpdated();
+
+    @Query("SELECT t FROM Ticket t WHERE t.remark = ''")
+    List<Ticket> findEditTickets();
  
 }
