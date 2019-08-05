@@ -1,0 +1,51 @@
+<br/>
+<form (ngSubmit)="onSubmit()">
+<div class="container">
+    <div class="row">
+        <div class="col">
+          <p class="h3">{{title}} 
+          <button class="btn btn-outline-success my-2 my-sm-0 btn_float_right" type="submit" 
+          *ngIf="isEdit === true">Update</button></p>
+
+          
+    <table class="thead-light table table-hover"> 
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Open Date</th>
+            <th scope="col">Closed Date</th>
+            <th scope="col">Resolution Category</th>
+            <th scope="col">Remark</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let ticket of tickets">
+            <th scope="row">{{ticket.number}}</th>
+            <td>{{ticket.description}}</td>
+            <td>{{ticket.priority}}</td>
+            <td>{{ticket.open_date}}</td>
+            <td>{{ticket.closed_date}}</td>
+            <td>
+                <span *ngIf="isEdit === false">{{ticket.resolution_category}}</span>
+                <select class="form-control mr-sm-2" *ngIf="isEdit === true" formControlName="resolutionCategory">
+                    <option value="none" selected="selected">None</option>
+                    <option value="volvo">Defect</option>
+                    <option value="saab">Data Issue</option>
+                    <option value="mercedes">Knowledge Gap</option>
+                    <option value="audi">Other</option>
+                  </select>
+            </td>
+            <td><span *ngIf="isEdit === false">{{ticket.remark}}</span>
+              <input type="text" class="form-control mr-sm-2" placeholder="Remark" aria-label="Remark" 
+              *ngIf="isEdit === true" formControlName="remark"/>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      </div>
+  </div>
+</form>

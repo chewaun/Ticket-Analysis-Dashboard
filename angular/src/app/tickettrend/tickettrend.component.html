@@ -1,0 +1,23 @@
+  <br/>
+  <div class="container">
+      <div class="row">
+          <div class="col">
+            <p class="h3"><img src="https://img.icons8.com/color/36/000000/combo-chart.png">{{title}} 
+           
+                <div>
+                    <div>
+                      <div style="display: block">
+                        <canvas baseChart
+                          [datasets]="barChartData"
+                          [labels]="barChartLabels"
+                          [options]="barChartOptions"
+                          [plugins]="barChartPlugins"
+                          [legend]="barChartLegend"
+                          [chartType]="barChartType">
+                        </canvas>
+                      </div>
+                    </div>
+                  </div>
+        </div>
+        </div>
+    </div>
